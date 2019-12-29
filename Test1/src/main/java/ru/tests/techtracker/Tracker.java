@@ -113,6 +113,6 @@ public class Tracker {
      * @return Уникальный ключ.
      */
     private String generateId() {
-        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+        return String.valueOf(System.currentTimeMillis() + RN.nextLong());
     }
 }

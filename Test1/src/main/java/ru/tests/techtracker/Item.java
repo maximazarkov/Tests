@@ -6,6 +6,7 @@ import java.util.Objects;
  * Класс Item описывает бизнесс модель заявки.
  * @author Azarkov Maxim
  * @version $id$ 29.12.2019
+ * @since 0.2
  */
  /* На данный момент укажем только id и имя заявки.
  * Далее возможно потребуется расширение полей и методов.
@@ -74,8 +75,15 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return Objects.equals(id, item.id)
-                && Objects.equals(name, item.name);
+        return time == item.time
+                && Objects.equals(id, item.id)
+                && Objects.equals(name, item.name)
+                && Objects.equals(desc, item.desc);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, desc, time);
     }
 
     /**
@@ -114,17 +122,13 @@ public class Item {
         return this.time;
     }
 
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
-
     @Override
     public String toString() {
         return "Item{"
                 + "id='" + id + '\''
                 + ", name='" + name + '\''
+                + ", desc='" + desc + '\''
+                + ", time=" + time
                 + '}';
     }
 }
