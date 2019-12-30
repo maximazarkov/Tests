@@ -1,5 +1,8 @@
 package ru.tests.techtracker;
 
+import ru.tests.techtracker.input.ConsoleInput;
+import ru.tests.techtracker.input.Input;
+
 /**
  * Основной модуль приложения
  * @author Azarkov Maxim
@@ -18,14 +21,24 @@ public StartUI(Input input) {
     }
 
     public void init() {
-        ConsoleInput input = new ConsoleInput();
-        String name = input.ask("");
-        Tracker tracker = new Tracker();
+        boolean exit = false;
+        while (!exit) {
+            this.showMenu();
+            int select = Integer.valueOf(this.input.ask("Выберите действие: "));
+            if (select == EXIT) {
+                exit = true;
+            }
+        }
+    }
+
+    private void showMenu() {
+        System.out.println("Меню:");
+
     }
 
     public static void main(String[] args) {
-//        Input input = new ConsoleInput(new String[] {"add task"});
-        Input input = new StubInput(new String[] {"add task"});
+        Input input = new ConsoleInput();
+//        Input input = new StubInput(new String[] {"add task"});
         new StartUI(input).init();
     }
 

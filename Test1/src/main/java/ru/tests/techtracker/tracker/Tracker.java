@@ -1,4 +1,4 @@
-package ru.tests.techtracker;
+package ru.tests.techtracker.tracker;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,8 +10,6 @@ import java.util.Random;
  * @since 0.1
  */
 public class Tracker {
-    //private final Item[] items = new Item[100];
-    //private int position = 0;
     private final List<Item> items = new ArrayList<>(); // массив для хранение заявок.
     private static final Random RN = new Random(); // ссылка на объект, для генерации случайных чисел.
 

@@ -1,4 +1,6 @@
-package ru.tests.techtracker;
+package ru.tests.techtracker.input;
+
+import ru.tests.techtracker.exceptions.MenuOutException;
 
 /**
  * данный класс предназначен для имитации работы консольного ввода черех тесты

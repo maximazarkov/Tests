@@ -1,4 +1,4 @@
-package ru.tests.techtracker;
+package ru.tests.techtracker.input;
 
 /**
  * Определим контракт (interface) для ввсех вариантов модулей ввода/вывода

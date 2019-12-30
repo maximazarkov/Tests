@@ -1,4 +1,4 @@
-package ru.tests.techtracker;
+package ru.tests.techtracker.tracker;
 
 import java.util.Objects;
 

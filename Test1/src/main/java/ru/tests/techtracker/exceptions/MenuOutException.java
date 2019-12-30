@@ -1,4 +1,4 @@
-package ru.tests.techtracker;
+package ru.tests.techtracker.exceptions;
 
 public class MenuOutException extends RuntimeException {
     public MenuOutException(String msg) {

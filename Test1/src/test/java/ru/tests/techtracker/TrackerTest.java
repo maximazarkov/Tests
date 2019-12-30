@@ -2,6 +2,9 @@ package ru.tests.techtracker;
 
 import org.junit.Before;
 import org.junit.Test;
+import ru.tests.techtracker.tracker.Item;
+import ru.tests.techtracker.tracker.Tracker;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.core.Is.is;
