@@ -1,6 +1,7 @@
-package ru.tests.techtracker.input;
+package ru.tests.techtracker.cli;
 
 import ru.tests.techtracker.exceptions.MenuOutException;
+import ru.tests.techtracker.input.Input;
 
 import java.util.Scanner;
 public class ConsoleInput implements Input {

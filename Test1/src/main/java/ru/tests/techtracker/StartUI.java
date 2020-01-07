@@ -1,6 +1,6 @@
 package ru.tests.techtracker;
 
-import ru.tests.techtracker.input.ConsoleInput;
+import ru.tests.techtracker.cli.ConsoleInput;
 import ru.tests.techtracker.input.Input;
 
 /**
