@@ -1,5 +1,8 @@
 package ru.tests.techtracker.gui;
 
+import ru.tests.techtracker.input.Input;
+import ru.tests.techtracker.tracker.Tracker;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +18,15 @@ import javax.swing.*;
  * @author Azarkov Maxim
  */
 public class MainTrackerJFrame extends JFrame {
+    private Input input; // Для хранения ссылки на объект системы ввода
+    private Tracker tracker; // ссылка на хранилище
 //    private static final int DEFAULT_WIDTH = 300;
 //    private static final int DEFAULT_HEIGHT = 200;
 
-    public MainTrackerJFrame() {
-        // заголовок.
-        // setTitle("Трекер (тестовое окно)")
+    public MainTrackerJFrame(Input input, Tracker tracker) {
         super("Трекер (тестовое окно)");
+        this.input = input;
+        this.tracker = tracker;
 
         // установим стандартный внешний вид. метод статический, м.б.вызван до создания фрейма MaintrackerFrame frame
         setDefaultLookAndFeelDecorated(true);
@@ -32,36 +37,14 @@ public class MainTrackerJFrame extends JFrame {
         // зададим шрифт
         Font font = new Font("Verdana", Font.PLAIN, 11);
 
-        // получаем размер экрана
-//        Toolkit kit = Toolkit.getDefaultToolkit();
-//        Dimension screenSize = kit.getScreenSize();
-//        int screenHeight = screenSize.height;
-//        int screenWidth = screenSize.width;
-//
-//        // Устанавливает положение фрейма
-////        int locationFrameX = screenWidth / 2 - DEFAULT_WIDTH / 2;
-////        int locationFrameY = screenHeight / 2 - DEFAULT_HEIGHT / 2;
-//        int locationFrameX = screenWidth / 4;
-//        int locationFrameY = screenHeight / 4;
-////        setLocation(locationFrameX, locationFrameY);
-
-        //задаем ширину и высоту фрейма
-//        setSize(screenWidth / 2, screenHeight / 2);
-//        setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-
         // отступ внутри окна от компонетнов.
         setPreferredSize(new Dimension(270, 225));
 
         // Подберем оптимальный размер окна с компонентами и т.д.
         pack();
 
-        // закрепляем окно, в нашем слкчае по центру экрана, по кординатам, определенноым выше
-//        setLocationByPlatform(true);
         // Окно по центру экрана можно расположить так
         setLocationRelativeTo(null);
-
-        // Устанавливает положение фрейма и его размер
-//        setBounds(locationFrameX, locationFrameY, screenWidth / 2, screenHeight / 2);
 
         // запрещаем изменение программы
         setResizable(false);
@@ -70,67 +53,46 @@ public class MainTrackerJFrame extends JFrame {
 //        Image img = new ImageIcon("icon.gif").getImage();
 //        setIconImage(img);
 
-        // работа с панелями
-//        MainPaint paint = new MainPaint("Example Paint in JFrame (2020)");
-        // заменим панель MainPaint paint extends JPanel на
+        // main panel
         JPanel panel = new JPanel();
-        // укажем построчное рамположение
+        // укажем построчное раcположение
         panel.setLayout(new FlowLayout());
+
+        //***************//
+        // необходимо изучить класс BOX и его методы по "склеиванию" элементов в окне
+        //***************//
 
         // добавим кнопки (пока вручную, затем нужно реализовать вариант автоматического создания кномок
         // или меню, напримере ConsoleInput. рассмотреть вариант создания кнопок или меню фабричным методом
-        JButton btnAddItem = new JButton("Добавить заявку");
-        panel.add(btnAddItem);
-
-        JButton btnDropItem = new JButton("Удалить заявку");
-        panel.add(btnDropItem);
-
-        JButton btnExit = new JButton("Выход");
-        panel.add(btnExit);
+//        JButton btnAddItem = new JButton("Добавить заявку");
+//        panel.add(btnAddItem);
+//
+//        JButton btnDropItem = new JButton("Удалить заявку");
+//        panel.add(btnDropItem);
+//
+//        JButton btnExit = new JButton("Выход");
+//        panel.add(btnExit);
 
         add(panel);
 
         // работа с меню
-        JMenuBar menuBar = new JMenuBar();
 
-        JMenu fileMenu = new JMenu("File");
-        fileMenu.setFont(font);
+        setJMenuBar(new GuiMenuTracker(input, tracker).createGuiMenu(font));
 
-        JMenu itemMenu = new JMenu("Item");
-        itemMenu.setFont(font);
-        fileMenu.add(itemMenu);
 
-        JMenuItem addItemMenu = new JMenuItem("Add Item");
-        addItemMenu.setFont(font);
-        itemMenu.add(addItemMenu);
-
-        JMenuItem dropItemMenu = new JMenuItem("Drop Item");
-        dropItemMenu.setFont(font);
-        itemMenu.add(dropItemMenu);
-
-        fileMenu.addSeparator();
-
-        JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.setFont(font);
-        fileMenu.add(exitItem);
-        exitItem.addActionListener(actionEvent -> dispose());
-
-        menuBar.add(fileMenu);
-        setJMenuBar(menuBar);
-
-        // добавим слушателей на мышь
-        btnAddItem.addActionListener(actionEvent -> {
-
-        });
-
-        btnDropItem.addActionListener(actionEvent -> {
-
-        });
-
-//        btnExit.addActionListener(actionEvent -> System.exit(0));
-        // dispose() - Закрывает окно и освобождает все систмные ресурсы, использованные при его сосздании.
-        // Обычно применятеся при выходе из меню
-        btnExit.addActionListener(actionEvent -> dispose());
+//        // добавим слушателей на мышь
+//        btnAddItem.addActionListener(actionEvent -> {
+//
+//        });
+//
+//        btnDropItem.addActionListener(actionEvent -> {
+//
+//        });
+//
+////        btnExit.addActionListener(actionEvent -> System.exit(0));
+//        // dispose() - Закрывает окно и освобождает все систмные ресурсы, использованные при его сосздании.
+//        // Обычно применятеся при выходе из меню
+//        btnExit.addActionListener(actionEvent -> dispose());
 
         // добавим слушателей на изменение окна
         addWindowListener(new WindowListener() {

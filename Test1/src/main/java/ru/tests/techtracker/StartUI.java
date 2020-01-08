@@ -2,10 +2,13 @@ package ru.tests.techtracker;
 
 import ru.tests.techtracker.cli.ConsoleInput;
 import ru.tests.techtracker.cli.MenuTracker;
+import ru.tests.techtracker.gui.GuiInput;
+import ru.tests.techtracker.gui.MainTrackerJFrame;
 import ru.tests.techtracker.input.Input;
 import ru.tests.techtracker.cli.ValidateInput;
 import ru.tests.techtracker.tracker.Tracker;
 
+import java.awt.*;
 import java.util.function.Consumer;
 
 /**
@@ -35,7 +38,6 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
         this.output = output;
-        init();
     }
 
     private void init() {
@@ -56,10 +58,16 @@ public class StartUI {
         }
     }
 
+    private void initUI() {
+        EventQueue.invokeLater(() -> {
+            MainTrackerJFrame frame = new MainTrackerJFrame(this.input, this.tracker);
+            frame.setVisible(true);
+        });
+    }
+
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
-//        Input input = new StubInput(new String[] {"add task"});
-        new StartUI(new ValidateInput(input), new Tracker(), System.out::println).init();
+//        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
+        new StartUI(new GuiInput(), new Tracker(), null).initUI();
     }
 
 }

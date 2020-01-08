@@ -3,6 +3,9 @@ package ru.tests.techtracker.gui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @deprecated
+ */
 public class MainPaint extends JPanel {
     private String msg;
     private int x = 10;

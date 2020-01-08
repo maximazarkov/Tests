@@ -1,5 +1,7 @@
 package ru.tests.techtracker.gui;
 
+import ru.tests.techtracker.tracker.Tracker;
+
 import java.awt.*;
 
 /**
@@ -7,6 +9,7 @@ import java.awt.*;
  * Пока выделенна отдельным main классом, т.к. с графикой еще не работал и как привязать к StartUI пока не знаю.
  * @version 0.1 30.12.2019
  * @author Azarkov Maxim
+ * @deprecated
  */
 public class MainTrackerJFrameTest {
     public static void main(String[] args) {
@@ -15,7 +18,7 @@ public class MainTrackerJFrameTest {
         // мыши или нажатием клавишь: EventQueue.invokeLater(new Runnable()) {public void run() {...}}
         // или javax.swing.SwingUtilites.invokeLater(new Runnable()) {public void run() {...}}
         EventQueue.invokeLater(() -> {
-            MainTrackerJFrame frame = new MainTrackerJFrame();
+            MainTrackerJFrame frame = new MainTrackerJFrame(new GuiInput(), new Tracker());
 //            frame.setContentPane(new ExamplePaintFrame());
             frame.setVisible(true);
         });
