@@ -37,6 +37,7 @@
       <!-- подключим все подпроекты (дочерние pom) -->
     <modules>
         <module>Test1</module>
+        <module>Test2_SortingMergeFile</module>
     </modules>
 
 
