@@ -4,14 +4,16 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class InputFile {
-    private FileInputStream fileInputStream;
+    private FileInputStream fileIn;
     private File file;
-    private final String pathToFile = "./src/resources/";
+    // получаем разделитель пути в текущей операционной системе
+    String fs = System.getProperty("file.separator");
+    private final String pathToFile = "." + fs + "src" + fs + "resources" + fs;
     private ArrayList<Integer> in = new ArrayList<>();
 
     public InputFile(String fileNameInput) throws FileNotFoundException {
         this.file = new File(pathToFile + fileNameInput);
-        this.fileInputStream = new FileInputStream(file);
+        this.fileIn = new FileInputStream(file);
     }
 
     /**
@@ -44,9 +46,10 @@ public class InputFile {
      * @version 0.1
      * @return - массив данных, прочитанных из файла
      */
-    public ArrayList<Integer> getFileContent() {
+    public ArrayList<Integer> getFileContent() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+
             String line = null;
             while ((line = reader.readLine()) != null) {
                 try {
@@ -59,6 +62,10 @@ public class InputFile {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
         return in;
     }

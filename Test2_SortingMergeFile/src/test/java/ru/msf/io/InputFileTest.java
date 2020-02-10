@@ -3,6 +3,7 @@ package ru.msf.io;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -22,7 +23,7 @@ public class InputFileTest {
     }
 
     @Test
-    public void whenGetFileContent() throws FileNotFoundException {
+    public void whenGetFileContent() throws IOException {
         ArrayList<Integer> in = new ArrayList<>();
         InputFile inFile = new InputFile("in1.txt");
         in = inFile.getFileContent();
