@@ -17,12 +17,63 @@ public class Merge {
      * @version 0.1
      * @since 0.3
      * @throws NotSortedFileException
+     * @deprecated
      */
     public static ArrayList<Integer> merge(ArrayList<Integer> in1,
-                             ArrayList<Integer> in2,
-                             ArrayList<Integer> in3)
+                                           ArrayList<Integer> in2,
+                                           ArrayList<Integer> in3)
             throws NotSortedFileException {
         return merge(in1, in2, in3, true);
+    }
+
+    /**
+     * Метод возвращает массив данных, полученных из трех файлов и отсортированных по алгоритму сортировки слияния по возрастанию (по умолчанию).
+     * @param inList - список данных из всех файлов, которые нужно отсортировать
+     * @return - отсортированный, объединенный массив
+     * @author Азарков Максим
+     * @since 0.4
+     * @throws NotSortedFileException
+     */
+    public static ArrayList<Integer> merge(ArrayList<ArrayList<Integer>> inList)
+            throws NotSortedFileException {
+        return merge(inList,  true);
+    }
+
+    /**
+     * Метод возвращает массив данных, полученных из трех файлов и отсортированных по алгоритму сортировки слияния либо по возрастанию, либо по убыванию.
+     * @param inList - список данных из всех файлов, которые нужно отсортировать
+     * @param direction - направление сортрировки слиянием. true - по возрастанию, false - по убыванию
+     * @return - отсортированный, объединенный массив
+     * @author Азарков Максим
+     * @since 0.4
+     * @throws NotSortedFileException - исключение формируется в случае ,если один из файлов не отсортирован
+     */
+    public static ArrayList<Integer> merge(ArrayList<ArrayList<Integer>> inList, boolean direction)
+            throws NotSortedFileException {
+
+        ArrayList<ArrayList<Integer>> arrayLists = inList;
+        ArrayList<Integer> out = new ArrayList<>();
+
+        int count = 0;
+
+        if (arrayLists.size() > 1) {
+            out = arrayLists.get(count++);
+            while (count < arrayLists.size()) {
+                out = simpleMergeAscendingOrder(out, arrayLists.get(count++));
+            }
+        }
+
+            // true - по возрастанию (ascending order)
+            // false - по убыванию (descending order)
+        if (direction) {
+            out = simpleMergeAscendingOrder(out, arrayLists.get(count));
+        } else {
+            out = simpleMergeDescendingOrder(out, arrayLists.get(count));
+        }
+
+//            count++;
+
+        return out;
     }
 
     /**
@@ -36,6 +87,7 @@ public class Merge {
      * @version 0.2
      * @since 0.2
      * @throws NotSortedFileException - исключение формируется в случае ,если один из файлов не отсортирован
+     * @deprecated
      */
     public static ArrayList<Integer> merge(ArrayList<Integer> in1,
                                            ArrayList<Integer> in2,
@@ -78,7 +130,7 @@ public class Merge {
         int error = 0;
 
         for (int k = 0; k < (a1.size() + a2.size()); k++) {
-            if (index1 >= 0 && min1 < a1.get(index1)) {
+            if ((index1 >= 0 && min1 < a1.get(index1))) {
 //                throw new NotSortedFileException("The data in the file (Array a1) is not sorted. ");
                 index1--;
                 error++;
@@ -113,7 +165,6 @@ public class Merge {
      * @param arr1 - первый массив
      * @param arr2 - второй массив
      * @return - резальтат работы алгоритма слияния в виде коллекции ArrayList<Integer>
-     * @version 0.1
      * @since 0.2
      */
     private static ArrayList<Integer> simpleMergeAscendingOrder(ArrayList<Integer> arr1, ArrayList<Integer> arr2) throws NotSortedFileException {
@@ -170,12 +221,15 @@ public class Merge {
     }
 
     private static int getMaxItem(ArrayList<Integer> al) {
-        int result = al.get(0);
-        Iterator<Integer> it = al.iterator();
-        while (it.hasNext()) {
-            int i = it.next();
-            if (result < i) {
-                result = i;
+        int result = 0;
+        if (al.size() > 0) {
+            result = al.get(0);
+            Iterator<Integer> it = al.iterator();
+            while (it.hasNext()) {
+                int i = it.next();
+                if (result < i) {
+                    result = i;
+                }
             }
         }
         return result;

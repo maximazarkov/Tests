@@ -4,40 +4,14 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class InputFile {
-    private FileInputStream fileIn;
-    private File file;
-    // получаем разделитель пути в текущей операционной системе
-    String fs = System.getProperty("file.separator");
-    private final String pathToFile = "." + fs + "src" + fs + "resources" + fs;
+    private String file;
+    private FileReader fileIn = null;
+
     private ArrayList<Integer> in = new ArrayList<>();
 
-    public InputFile(String fileNameInput) throws FileNotFoundException {
-        this.file = new File(pathToFile + fileNameInput);
-        this.fileIn = new FileInputStream(file);
-    }
-
-    /**
-     * Метод, позволяющий просмотреть содержимое директории resources.
-     * @author Азарков Максим
-     * @version 0.2
-     * @deprecated
-     */
-    public void ls() {
-        try {
-            if (file.isDirectory()) {
-               String[] dirContents = file.list();
-               for (int i = 0; i < dirContents.length; i++) {
-                   System.out.println(dirContents[i]);
-               }
-            }
-            //  прочитаем содержимое директории (для теста)
-            for (File file : new File(pathToFile).listFiles()) {
-                System.out.println(file.getName());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
+    public InputFile(String fileNameInput, String fp) throws FileNotFoundException {
+        this.file = fp + fileNameInput;
+//        FileInputStream fileIn = new FileInputStream(file);
     }
 
     /**

@@ -7,13 +7,12 @@ import java.util.Iterator;
 public class OutputFile {
     private FileWriter fileOut = null;
     private String filePath;
-    // получаем разделитель пути в текущей операционной системе
-    String fs = System.getProperty("file.separator");
-    private final String pathToFile = "." + fs + "src" + fs + "resources" + fs;
-    private ArrayList<Integer> out = new ArrayList<>();
+//    // получаем разделитель пути в текущей операционной системе
+//    String fs = System.getProperty("file.separator");
+//    private ArrayList<Integer> out = new ArrayList<>();
 
-    public OutputFile(String fileNameInput)  throws IOException {
-        this.filePath = pathToFile + fileNameInput;
+    public OutputFile(String fileNameInput, String fp)  throws IOException {
+        this.filePath = fp + fileNameInput;
     }
 
     public void saveFile() throws IOException {
