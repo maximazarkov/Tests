@@ -22,7 +22,7 @@ public class SortItTest {
 //            System.out.println("java SortIt -d -s out.txt in1.txt in2.txt (для строк по убыванию)");
 //            new SortIt().init(new String[]{"-d", "-s", "out3.txt", "in.txt"});
 
-        System.out.println("java SortIt -d -i out4.txt in1.txt in2.txt (для строк по убыванию)");
+        System.out.println("java SortIt -d -i out4.txt in1.txt in2.txt (для целых чисел по убыванию)");
         new SortIt(new String[]{"-d", "-i", "out4.txt", "in1.txt", "in2.txt"}).init(filePath);
 
     }

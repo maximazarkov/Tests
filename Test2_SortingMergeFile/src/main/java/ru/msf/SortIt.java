@@ -30,8 +30,8 @@ public class SortIt {
 //            new SortIt().init(new String[]{"-s", "out2.txt", "in.txt"});
 //            System.out.println("java SortIt -d -s out.txt in1.txt in2.txt (для строк по убыванию)");
 //            new SortIt().init(new String[]{"-d", "-s", "out3.txt", "in.txt"});
-            System.out.println("java SortIt -d -i out.txt in1.txt in2.txt (для строк по убыванию)");
-            new SortIt(new String[]{"-d", "-i", "out4.txt", "in1.txt"}).init(filePath);
+            System.out.println("java SortIt -d -i out.txt in1.txt in2.txt (для целых чисел по убыванию)");
+            new SortIt(new String[]{"-d", "-i", "out4.txt", "in1.txt", "in2.txt"}).init(filePath);
         } else {
             new SortIt(args).init(filePath);
         }
@@ -100,10 +100,10 @@ public class SortIt {
     }
 
     private static boolean checkDescending(String[] args) {
-        boolean result = false;
+        boolean result = true;
         for (int i = 0; i < 2; i++) {
             if (args[i].equals("-d")) {
-                result = true;
+                result = false;
             }
         }
         return result;

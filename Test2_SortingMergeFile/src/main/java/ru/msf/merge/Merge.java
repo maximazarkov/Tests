@@ -58,7 +58,7 @@ public class Merge {
 
         if (arrayLists.size() > 1) {
             out = arrayLists.get(count++);
-            while (count < arrayLists.size()) {
+            while (count < arrayLists.size() - 1) {
                 out = simpleMergeAscendingOrder(out, arrayLists.get(count++));
             }
         }
@@ -209,12 +209,15 @@ public class Merge {
     }
 
     private static int getMinItem(ArrayList<Integer> al) {
-        int result = al.get(0);
-        Iterator<Integer> it = al.iterator();
-        while (it.hasNext()) {
-            int i = it.next();
-            if (result > i) {
-                result = i;
+        int result = 0;
+        if (al.size() != 0) {
+            result = al.get(0);
+            Iterator<Integer> it = al.iterator();
+            while (it.hasNext()) {
+                int i = it.next();
+                if (result > i) {
+                    result = i;
+                }
             }
         }
         return result;
